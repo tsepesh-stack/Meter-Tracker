@@ -1,0 +1,6 @@
+@MeterTrackerApi_HostAddress = http://localhost:5084
+
+GET {{MeterTrackerApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
