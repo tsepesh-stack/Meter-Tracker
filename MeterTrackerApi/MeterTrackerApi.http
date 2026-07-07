@@ -1,6 +1,99 @@
-@MeterTrackerApi_HostAddress = http://localhost:5084
+@host = http://localhost:5084
 
-GET {{MeterTrackerApi_HostAddress}}/weatherforecast/
+### Получить все счётчики
+GET {{host}}/meters
 Accept: application/json
 
 ###
+
+### Получить счётчик по id
+GET {{host}}/meters/1
+Accept: application/json
+
+###
+
+### Создать счётчик
+POST {{host}}/meters
+Content-Type: application/json
+
+{
+    "premiseId": 1,
+    "meterType": 0,
+    "tariff": null
+}
+
+###
+
+### Обновить активность счётчика
+PUT {{host}}/meters/1
+Content-Type: application/json
+
+{
+    "isActive": false
+}
+
+### Получить все помещения
+GET {{host}}/premises
+Accept: application/json
+
+###
+
+### Получить помещение по id
+GET {{host}}/premises/1
+Accept: application/json
+
+###
+
+### Создать помещение
+POST {{host}}/premises
+Content-Type: application/json
+
+{
+    "address": "ул. Ленина, 10, офис 5",
+    "responsibleUserId": 1
+}
+
+###
+
+### Обновить ответственного (подмена)
+PUT {{host}}/premises/1
+Content-Type: application/json
+
+{
+    "responsibleUserId": 2
+}
+
+###
+
+### Получить все показания
+GET {{host}}/readings
+Accept: application/json
+
+###
+
+### Получить показание по id
+GET {{host}}/readings/1
+Accept: application/json
+
+###
+
+### Создать показание
+POST {{host}}/readings
+Content-Type: application/json
+
+{
+    "meterId": 1,
+    "Value": "7737",
+    "PhotoUrl": "ссылка на юрл"
+}
+
+###
+
+### Обновить показание
+PUT {{host}}/readings/1
+Content-Type: application/json
+
+{
+    "Value": "7777",
+    "PhotoUrl": "ссылка на юрл"
+}
