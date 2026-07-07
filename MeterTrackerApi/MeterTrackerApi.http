@@ -32,9 +32,11 @@ Content-Type: application/json
     "isActive": false
 }
 
-### Получить все помещения
+### Получить помещения (с фильтрацией по роли)
 GET {{host}}/premises
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoi0JjQstCw0L0g0JLQsNGB0LjQu9GM0LXQstC40YciLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMSIsImV4cCI6MTc4MzU0MzIyNCwiaXNzIjoiTWV0ZXJUcmFja2VyQXBpIiwiYXVkIjoiTWV0ZXJUcmFja2VyQXBpVXNlcnMifQ.DgbAofhlh4GxsUvRMdLlZif1-CyAnhjHZcMVLbPRkxk
 Accept: application/json
+
 
 ###
 
@@ -47,6 +49,7 @@ Accept: application/json
 ### Создать помещение
 POST {{host}}/premises
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoi0JjQstCw0L0g0JLQsNGB0LjQu9GM0LXQstC40YciLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMSIsImV4cCI6MTc4MzU0MzM2OSwiaXNzIjoiTWV0ZXJUcmFja2VyQXBpIiwiYXVkIjoiTWV0ZXJUcmFja2VyQXBpVXNlcnMifQ.aHVR9czvvsox_109xLeRQzGWWuUyMgQgfH_-ojVsw5Q
 
 {
     "address": "ул. Ленина, 10, офис 5",
@@ -83,8 +86,8 @@ Content-Type: application/json
 
 {
     "meterId": 1,
-    "Value": "7737",
-    "PhotoUrl": "ссылка на юрл"
+    "value": "7737",
+    "photoUrl": "ссылка на юрл"
 }
 
 ###
@@ -94,6 +97,16 @@ PUT {{host}}/readings/1
 Content-Type: application/json
 
 {
-    "Value": "7777",
-    "PhotoUrl": "ссылка на юрл"
+    "value": "7777",
+    "photoUrl": "ссылка на юрл"
+}
+
+###
+
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{
+    "name": "Иван Васильевич",
+    "password": "1234"
 }
