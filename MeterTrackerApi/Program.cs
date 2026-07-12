@@ -1,6 +1,7 @@
 using MeterTrackerApi;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.EntityFrameworkCore;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +32,8 @@ builder.Services.AddAuthorization();
 builder.Services.AddSingleton<MeterService>();
 builder.Services.AddSingleton<PremiseService>();
 builder.Services.AddSingleton<ReadingService>();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
