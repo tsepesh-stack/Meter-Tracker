@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MeterTrackerApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8dd539f907240d759656b506b5b5088ee192241f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+74ed61a41878b93c91b5daf2d210f9d07574e7a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("MeterTrackerApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MeterTrackerApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
