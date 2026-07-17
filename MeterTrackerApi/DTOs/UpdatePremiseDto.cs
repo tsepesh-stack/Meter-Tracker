@@ -3,6 +3,6 @@ using System.ComponentModel.DataAnnotations;
 namespace MeterTrackerApi;
 public class UpdatePremiseDto
 {
-    [Required]       
-    public int ResponsibleUserId{get;set;}
+    public string? TenantName{get;set;}      
+    public int? ResponsibleUserId{get;set;}
 }
