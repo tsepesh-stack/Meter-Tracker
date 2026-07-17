@@ -1,29 +1,44 @@
 using System;
+using Microsoft.EntityFrameworkCore;
 namespace MeterTrackerApi;
 public class MeterService
 {
-    private List<Meter> _meters = new List<Meter>
+    private readonly AppDbContext _db;
+
+    public MeterService(AppDbContext db)
     {
-           
-    };
-    public List<Meter> GetAll(){return _meters;}
-    public Meter? GetById(int Id){var meter = _meters.FirstOrDefault(t=>t.Id==Id); return meter;}
-    public Meter Create(CreateMeterDto dto){
-	var meter=new Meter{
-	Id=_meters.Any() ? _meters.Max(t=>t.Id)+1 : 1,
-	MeterType =dto.MeterType,  
-	Tariff=dto.Tariff,
-    PremiseId=dto.PremiseId};
-	_meters.Add(meter);
-	return meter;}
-    public bool Update(int Id,UpdateMeterDto dto)
+        _db = db;
+    }
+    public async Task<List<Meter>> GetAll()
     {
-        var meter = _meters.FirstOrDefault(t=>t.Id==Id);
+        return await _db.Meters.ToListAsync();
+    }
+    public async Task<Meter?> GetById(int Id)
+    {
+        var meter = await _db.Meters.FindAsync(Id);
+        return meter;
+    }
+    public async Task<Meter> Create(CreateMeterDto dto)
+    {
+	    var meter=new Meter
+        {
+	        MeterType = dto.MeterType,  
+	        Tariff = dto.Tariff,
+            PremiseId = dto.PremiseId
+        };
+	    _db.Meters.Add(meter);
+        await _db.SaveChangesAsync();
+	    return meter;
+    }
+    public async Task<bool> Update(int Id,UpdateMeterDto dto)
+    {
+        var meter = await _db.Meters.FindAsync(Id);
         if(meter==null){return false;}
         else
         {
-            meter.IsActive=dto.IsActive; return true;
+            meter.IsActive=dto.IsActive;
+            await _db.SaveChangesAsync();
+            return true;
         }
-
     }
 }

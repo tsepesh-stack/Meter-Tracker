@@ -4,7 +4,7 @@ namespace MeterTrackerApi;
 public class CreatePremiseDto
 {
     [Required]    
-    public string? Address{get;set;}
+    public required string Address{get;set;}
     public string? TenantName{get;set;}    
     public int? ResponsibleUserId{get;set;}
 }

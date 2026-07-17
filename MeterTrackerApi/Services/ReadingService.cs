@@ -1,27 +1,40 @@
 using System;
+using Microsoft.EntityFrameworkCore;
 namespace MeterTrackerApi;
 public class ReadingService
 {
-    private List<Reading> _reading = new List<Reading>{};
-    public List<Reading> GetAll(){return _reading;}
-    public Reading ? GetById(int Id){var reading=_reading.FirstOrDefault(t=>t.Id==Id); return reading;}
-    public Reading Create(CreateReadingDto dto, int submittedById)
+    private readonly AppDbContext _db;
+
+    public ReadingService(AppDbContext db)
+    {
+        _db = db;
+    }
+    public async Task<List<Reading>> GetAll()
+    {
+        return await _db.Readings.ToListAsync();
+    }
+    public async Task<Reading?> GetById(int Id)
+    {
+        var reading= await _db.Readings.FindAsync(Id); 
+        return reading;
+    }
+    public async Task<Reading> Create(CreateReadingDto dto, int submittedById)
     {
         var reading = new Reading
         {
-            Id=_reading.Any() ? _reading.Max(t=>t.Id)+1 : 1,
             MeterId=dto.MeterId,
             Value=dto.Value,
-            ReadingDate=DateTime.Now,
+            ReadingDate=DateTime.UtcNow,
             PhotoUrl=dto.PhotoUrl,
             SubmittedById = submittedById
         };
-        _reading.Add(reading);
+        _db.Readings.Add(reading);
+        await _db.SaveChangesAsync();
         return reading;
     }
-    public bool Update(int Id, UpdateReadingDto dto)
+    public async Task<bool> Update(int Id, UpdateReadingDto dto)
     {
-        var reading = _reading.FirstOrDefault(t=>t.Id==Id);
+        var reading = await _db.Readings.FindAsync(Id);
         if (reading == null)
         {
             return false;
@@ -30,6 +43,7 @@ public class ReadingService
         {
             reading.Value=dto.Value;
             reading.PhotoUrl=dto.PhotoUrl;
+            await _db.SaveChangesAsync();
             return true;
         }
     }

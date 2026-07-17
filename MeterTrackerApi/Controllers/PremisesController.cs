@@ -13,41 +13,44 @@ public class PremisesController : ControllerBase
     {
         _premiseService=premiseService;
     }
+    
     [HttpGet]
     [Authorize]
-    public ActionResult<Premise> Get()
+    public async Task<ActionResult<Premise>> Get()
     {
+        var allPremises = await _premiseService.GetAll(); 
+    
         var role = User.FindFirst(ClaimTypes.Role)?.Value;
+        if (role == "Admin")
+        {
+            return Ok(allPremises);
+        }
     
-    if (role == "Admin")
-    {
-        return Ok(_premiseService.GetAll());
-    }
-    
-    var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-    var myPremises = _premiseService.GetAll().Where(p => p.ResponsibleUserId == int.Parse(userId));
-    return Ok(myPremises);
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        if (userId == null) return Unauthorized();
+        var myPremises = allPremises.Where(p => p.ResponsibleUserId == int.Parse(userId)).ToList();
+        return Ok(myPremises);
     }
     [HttpGet("{id}")]
-    public ActionResult<Premise> Get(int id)
+    public async Task<ActionResult<Premise>> Get(int id)
     {
-        var premise = _premiseService.GetById(id);
+        var premise = await _premiseService.GetById(id);
         if(premise==null) return NotFound();
         return Ok(premise);
     }
     [HttpPost]
     [Authorize(Roles = "Admin")]
-    public ActionResult<Premise> Create(CreatePremiseDto dto)
+    public async Task<ActionResult<Premise>> Create(CreatePremiseDto dto)
     {
-        var premise = _premiseService.Create(dto);
+        var premise = await _premiseService.Create(dto);
         return Created($"/premises/{premise.Id}", premise);
     }
     [HttpPut("{id}")]
     [Authorize(Roles = "Admin")]
-    public ActionResult<Premise> Update(int id, UpdatePremiseDto dto)
+    public async Task<ActionResult<Premise>> Update(int id, UpdatePremiseDto dto)
     {
-        var success = _premiseService.Update(id,dto);
+        var success = await _premiseService.Update(id,dto);
         if(!success) return NotFound();
-        return Ok(_premiseService.GetById(id));
+        return Ok(await _premiseService.GetById(id));
     }
 }

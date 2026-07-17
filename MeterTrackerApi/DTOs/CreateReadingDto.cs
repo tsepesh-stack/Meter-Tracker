@@ -7,5 +7,5 @@ public class CreateReadingDto
     public int MeterId{get;set;}
     [Required]
     public decimal Value{get;set;}
-    public string PhotoUrl{get;set;}
+    public string? PhotoUrl{get;set;}
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Security.Claims;
 using MeterTrackerApi;
 using Microsoft.AspNetCore.Mvc;
 namespace MeterTrackerApi.Controllers;
@@ -12,29 +13,30 @@ public class ReadingsController : ControllerBase
         _readingService=readingService;
     }
     [HttpGet]
-    public ActionResult<Reading> Get()
+    public async Task<ActionResult<Reading>> Get()
     {
-        return Ok(_readingService.GetAll());
+        return Ok(await _readingService.GetAll());
     }
     [HttpGet("{id}")]
-    public ActionResult<Reading> Get(int id)
+    public async Task<ActionResult<Reading>> Get(int id)
     {
-        var reading = _readingService.GetById(id);
+        var reading = await _readingService.GetById(id);
         if(reading==null) return NotFound();
         return Ok(reading);
     }
     [HttpPost]
-    public ActionResult<Reading> Create(CreateReadingDto dto)
+    public async Task<ActionResult<Reading>> Create(CreateReadingDto dto)
     {
-        int submittedById=1;
-        var reading=_readingService.Create(dto,submittedById);
+        var userId = User.FindFirst(ClaimTypes.GivenName)?.Value;
+        if (userId==null) return Unauthorized();
+        var reading= await _readingService.Create(dto,int.Parse(userId));
         return Created($"/readings/{reading.Id}",reading);
     }
     [HttpPut("{id}")]
-    public ActionResult<Reading> Update(int id, UpdateReadingDto dto)
+    public async Task<ActionResult<Reading>> Update(int id, UpdateReadingDto dto)
     {
-        var success = _readingService.Update(id,dto);
+        var success =await  _readingService.Update(id,dto);
         if(!success) return NotFound();
-        return Ok(_readingService.GetById(id));
+        return Ok(await _readingService.GetById(id));
     }
 }

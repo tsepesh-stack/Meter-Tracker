@@ -29,16 +29,16 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 builder.Services.AddAuthorization();
 
-builder.Services.AddSingleton<MeterService>();
-builder.Services.AddSingleton<PremiseService>();
-builder.Services.AddSingleton<ReadingService>();
+builder.Services.AddScoped<MeterService>();
+builder.Services.AddScoped<PremiseService>();
+builder.Services.AddScoped<ReadingService>();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
 // TEST — remove later
-await RunDeleteBehaviorTests(app);
+// await RunDeleteBehaviorTests(app);
 
 
 // Configure the HTTP request pipeline.
