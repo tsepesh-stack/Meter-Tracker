@@ -18,8 +18,17 @@ public class ReadingService
         var reading= await _db.Readings.FindAsync(Id); 
         return reading;
     }
-    public async Task<Reading> Create(CreateReadingDto dto, int submittedById)
+    public async Task<Reading?> Create(CreateReadingDto dto, int submittedById)
     {
+        var lastReading = await _db.Readings
+            .Where(r => r.MeterId == dto.MeterId)
+            .OrderByDescending(r => r.ReadingDate)
+            .FirstOrDefaultAsync();
+        if(lastReading!=null && dto.Value < lastReading.Value)
+        {
+            return null;
+        }
+            
         var reading = new Reading
         {
             MeterId=dto.MeterId,

@@ -27,9 +27,13 @@ public class ReadingsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Reading>> Create(CreateReadingDto dto)
     {
-        var userId = User.FindFirst(ClaimTypes.GivenName)?.Value;
+        var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
         if (userId==null) return Unauthorized();
         var reading= await _readingService.Create(dto,int.Parse(userId));
+        if (reading == null)
+        {
+           return BadRequest("Новое показание не может быть меньше предыдущего.");
+        }
         return Created($"/readings/{reading.Id}",reading);
     }
     [HttpPut("{id}")]
