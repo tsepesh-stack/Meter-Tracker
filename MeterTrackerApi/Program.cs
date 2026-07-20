@@ -29,6 +29,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 builder.Services.AddAuthorization();
 
+
+builder.Services.AddScoped<CloudinaryService>();
 builder.Services.AddScoped<MeterService>();
 builder.Services.AddScoped<PremiseService>();
 builder.Services.AddScoped<ReadingService>();

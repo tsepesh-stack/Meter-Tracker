@@ -8,9 +8,11 @@ namespace MeterTrackerApi.Controllers;
 public class ReadingsController : ControllerBase
 {
     private readonly ReadingService _readingService;
-    public ReadingsController(ReadingService readingService)
+    private readonly CloudinaryService _cloudinaryService;
+    public ReadingsController(ReadingService readingService, CloudinaryService cloudinaryService)
     {
         _readingService=readingService;
+        _cloudinaryService = cloudinaryService;
     }
     [HttpGet]
     public async Task<ActionResult<Reading>> Get()
@@ -42,5 +44,18 @@ public class ReadingsController : ControllerBase
         var success =await  _readingService.Update(id,dto);
         if(!success) return NotFound();
         return Ok(await _readingService.GetById(id));
+    }
+    [HttpPost("{id}/photo")]
+    public async Task<ActionResult> UploadPhoto(int id, IFormFile file)
+    {
+        var reading = await _readingService.GetById(id);
+        if (reading == null) return NotFound();
+    
+        var url = await _cloudinaryService.UploadPhoto(file);
+    
+        var success = await _readingService.UpdatePhoto(id, url);
+        if (!success) return BadRequest();
+    
+        return Ok(new { photoUrl = url });
     }
 }

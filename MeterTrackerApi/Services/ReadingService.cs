@@ -51,7 +51,20 @@ public class ReadingService
         else
         {
             reading.Value=dto.Value;
-            reading.PhotoUrl=dto.PhotoUrl;
+            await _db.SaveChangesAsync();
+            return true;
+        }
+    }
+    public async Task<bool> UpdatePhoto(int Id, string url)
+    {
+        var reading = await _db.Readings.FindAsync(Id);
+        if (reading == null)
+        {
+            return false;
+        }
+        else
+        {
+            reading.PhotoUrl=url;
             await _db.SaveChangesAsync();
             return true;
         }
