@@ -107,6 +107,6 @@ POST {{host}}/auth/login
 Content-Type: application/json
 
 {
-    "name": "Иван Васильевич",
-    "password": "1234"
+    "name": "Иван",
+    "password": "4505"
 }
