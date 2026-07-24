@@ -21,8 +21,10 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<ActionResult> Login(LoginDto dto)
     {
-        var user = await _db.Users.FirstOrDefaultAsync(u => u.Name == dto.Name && u.Password == dto.Password);
+        var user = await _db.Users.FirstOrDefaultAsync(u => u.Name == dto.Name);
         if (user == null) return Unauthorized();
+        if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.Password)) return Unauthorized();
+
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -43,5 +45,22 @@ public class AuthController : ControllerBase
         );
 
         return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
+    }
+    [HttpPost("register")]
+    public async Task<ActionResult> Register(RegisterDto dto)
+    {
+        var username = await _db.Users.FirstOrDefaultAsync(u=> u.Name == dto.Name);
+        if (username != null) return BadRequest("Пользователь уже существует");
+
+        var user = new User
+        {
+            Name=dto.Name,
+            Password= BCrypt.Net.BCrypt.HashPassword(dto.Password),
+            Role= Role.User
+        };
+        _db.Users.Add(user);
+        await _db.SaveChangesAsync();
+
+        return Ok();
     }
 }
