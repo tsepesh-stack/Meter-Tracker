@@ -29,8 +29,14 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
 
 
     const data = await response.json();
-    localStorage.setItem('token', data.token);
-    console.log(data);
-    
-    window.location.href = 'readings.html'
+localStorage.setItem('token', data.token);
+
+const payload = JSON.parse(atob(data.token.split('.')[1]));
+const role = payload['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];
+
+if (role === 'Admin') {
+    window.location.href = 'admin.html';
+} else {
+    window.location.href = 'readings.html';
+}
 });
