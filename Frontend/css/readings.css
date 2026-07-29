@@ -179,3 +179,43 @@ input:focus {
     background: #28b34c;
     transform: scale(0.98);
 }
+
+.toast {
+    position: fixed;
+    left: 50%;
+    bottom: 32px;
+    transform: translate(-50%, 12px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #2c2c2e;
+    border: 1px solid #3a3a3c;
+    color: #ffffff;
+    padding: 14px 20px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 1000;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+}
+
+.toast-icon {
+    color: #30d158;
+    font-weight: 700;
+}
+
+.toast.toast-error {
+    border-color: #ff453a;
+}
+
+.toast.toast-error .toast-icon {
+    color: #ff453a;
+}

@@ -4,6 +4,17 @@ const token = localStorage.getItem('token');
 if (!token) {
     window.location.href = 'html/index.html';
 }
+let toastTimer;
+function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMessage').textContent = message;
+    document.getElementById('toastIcon').textContent = type === 'error' ? '✕' : '✓';
+    toast.classList.toggle('toast-error', type === 'error');
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+}
+
 function showScreen(id) {
     document.getElementById('screenPremises').classList.add('hidden');
     document.getElementById('screenMeters').classList.add('hidden');
@@ -123,7 +134,7 @@ document.getElementById('submitReading').addEventListener('click', async functio
     const photo = document.getElementById('photo').files[0];
 
     if (!value) {
-        alert('Введите показание');
+        showToast('Введите показание', 'error');
         return;
     }
 
@@ -139,7 +150,7 @@ document.getElementById('submitReading').addEventListener('click', async functio
 
     if (!response.ok) {
         const error = await response.text();
-        alert(error);
+        showToast(error, 'error');
         return;
     }
 
@@ -157,6 +168,6 @@ document.getElementById('submitReading').addEventListener('click', async functio
         });
     }
 
-    alert('Показание сохранено!');
+    showToast('Показание сохранено');
     showScreen('screenMeters');
 });
