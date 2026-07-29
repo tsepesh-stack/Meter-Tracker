@@ -28,6 +28,13 @@ public class ReadingService
             .Select(g => g.OrderByDescending(r => r.ReadingDate).First())
             .ToListAsync();
     }
+    public async Task<Reading?> GetLastByMeter(int meterId)
+    {
+        return await _db.Readings
+            .Where(r => r.MeterId == meterId)
+            .OrderByDescending(r => r.ReadingDate)
+            .FirstOrDefaultAsync();
+    }
     public async Task<Reading?> Create(CreateReadingDto dto, int submittedById)
     {
         var lastReading = await _db.Readings

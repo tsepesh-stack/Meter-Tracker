@@ -34,7 +34,13 @@ public class ReadingsController : ControllerBase
         if(reading==null) return NotFound();
         return Ok(reading);
     }
-    
+    [HttpGet("last-by-meter/{meterId}")]
+    public async Task<ActionResult<Reading>> GetLastByMeter(int meterId)
+    {
+        var reading = await _readingService.GetLastByMeter(meterId);
+        if (reading == null) return NotFound();
+        return Ok(reading);
+    }
     [HttpPost]
     public async Task<ActionResult<Reading>> Create(CreateReadingDto dto)
     {

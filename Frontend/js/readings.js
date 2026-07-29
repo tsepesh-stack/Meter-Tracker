@@ -76,14 +76,23 @@ function getMeterName(meter) {
 document.getElementById('backToPremises').addEventListener('click', () => {
     showScreen('screenPremises');
 });
-function openForm(meter) {
+async function openForm(meter) {
     showScreen('screenForm');
     document.getElementById('meterTitle').textContent = getMeterName(meter);
-    document.getElementById('lastValue').textContent = '';
     document.getElementById('value').value = '';
-    
-    // сохраняем id счётчика для отправки показания
     document.getElementById('submitReading').dataset.meterId = meter.id;
+
+    // Загружаем последнее показание
+    const response = await fetch(`${API_URL}/Readings/last-by-meter/${meter.id}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+
+    if (response.ok) {
+        const last = await response.json();
+        document.getElementById('lastValue').textContent = `Прошлое: ${last.value}`;
+    } else {
+        document.getElementById('lastValue').textContent = 'Первое показание';
+    }
 }
 
 document.getElementById('backToMeters').addEventListener('click', () => {
