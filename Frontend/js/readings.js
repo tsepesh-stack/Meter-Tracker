@@ -76,10 +76,29 @@ function getMeterName(meter) {
 document.getElementById('backToPremises').addEventListener('click', () => {
     showScreen('screenPremises');
 });
+document.getElementById('photo').addEventListener('change', function() {
+    const preview = document.getElementById('photoPreview');
+    const file = this.files[0];
+    if (!file) {
+        preview.style.backgroundImage = '';
+        preview.textContent = 'превью фото';
+        return;
+    }
+    const reader = new FileReader();
+    reader.onload = e => {
+        preview.style.backgroundImage = `url(${e.target.result})`;
+        preview.textContent = '';
+    };
+    reader.readAsDataURL(file);
+});
+
 async function openForm(meter) {
     showScreen('screenForm');
     document.getElementById('meterTitle').textContent = getMeterName(meter);
     document.getElementById('value').value = '';
+    document.getElementById('photo').value = '';
+    document.getElementById('photoPreview').style.backgroundImage = '';
+    document.getElementById('photoPreview').textContent = 'превью фото';
     document.getElementById('submitReading').dataset.meterId = meter.id;
 
     // Загружаем последнее показание
