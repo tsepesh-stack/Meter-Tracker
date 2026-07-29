@@ -2,6 +2,14 @@
     box-sizing: border-box;
 }
 
+.hidden {
+    display: none;
+}
+
+input.error {
+    border-color: #e74c3c;
+}
+
 body {
     font-family: -apple-system, Arial, sans-serif;
     display: flex;

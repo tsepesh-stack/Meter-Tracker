@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/readings.css">
+</head>
+<body>
+    <div id="screenPremises">
+    <h1>Мои помещения</h1>
+    <div class="card" id="premisesList"></div>
+</div>
+
+<div id="screenMeters" class="hidden">
+    <button id="backToPremises">← Назад</button>
+    <h1 id="premiseTitle"></h1>
+    <div class="card" id="metersList"></div>
+</div>
+
+<div id="screenForm" class="hidden">
+    <button id="backToMeters">← Назад</button>
+    <h1 id="meterTitle"></h1>
+    <p id="lastValue"></p>
+    <input type="number" id="value" placeholder="Показание">
+    <input type="file" id="photo" accept="image/*" capture="environment">
+    <button id="submitReading">Отправить</button>
+</div>
+<script src="../js/readings.js"></script>
+</body>
+</html>

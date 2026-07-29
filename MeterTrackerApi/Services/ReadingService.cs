@@ -18,6 +18,16 @@ public class ReadingService
         var reading= await _db.Readings.FindAsync(Id); 
         return reading;
     }
+    public async Task<List<Reading>> GetLatestByPremises()
+    {
+        return await _db.Readings
+            .Include(r => r.Meter)
+                .ThenInclude(m => m.Premise)
+            .Include(r => r.SubmittedBy)
+            .GroupBy(r => r.MeterId)
+            .Select(g => g.OrderByDescending(r => r.ReadingDate).First())
+            .ToListAsync();
+    }
     public async Task<Reading?> Create(CreateReadingDto dto, int submittedById)
     {
         var lastReading = await _db.Readings

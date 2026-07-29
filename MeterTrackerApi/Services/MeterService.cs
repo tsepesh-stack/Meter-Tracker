@@ -13,6 +13,12 @@ public class MeterService
     {
         return await _db.Meters.ToListAsync();
     }
+    public async Task<List<Meter>> GetByPremise(int premiseId)
+    {
+        return await _db.Meters
+            .Where(m => m.PremiseId == premiseId)
+            .ToListAsync();
+    }
     public async Task<Meter?> GetById(int Id)
     {
         var meter = await _db.Meters.FindAsync(Id);

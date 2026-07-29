@@ -1,4 +1,12 @@
 const API_URL = 'http://localhost:5084';
+
+document.getElementById('name').addEventListener('input', function() {
+    this.classList.remove('error');
+});
+document.getElementById('password').addEventListener('input', function() {
+    this.classList.remove('error');
+});
+
 document.getElementById('loginForm').addEventListener('submit', async function(event) {
     event.preventDefault();
     
@@ -14,9 +22,11 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
     });
 
     if (!response.ok) {
-    console.log('Ошибка входа');
+    document.getElementById('name').classList.add('error');
+    document.getElementById('password').classList.add('error');
     return;
-    }
+}
+
 
     const data = await response.json();
     localStorage.setItem('token', data.token);

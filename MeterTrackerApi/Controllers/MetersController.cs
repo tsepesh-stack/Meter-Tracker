@@ -22,6 +22,12 @@ public async Task<ActionResult<Meter>> Get(int id)
         if(meter==null){return NotFound();}
         return Ok(meter);
     }
+[HttpGet("by-premise")]
+public async Task<ActionResult<List<Meter>>> GetByPremise(int premiseId)
+{
+    var meters = await _meterService.GetByPremise(premiseId);
+    return Ok(meters);
+}
 [HttpPost]
 public async Task<ActionResult<Meter>> Create(CreateMeterDto dto)
     {

@@ -1,6 +1,7 @@
 using System;
 using System.Security.Claims;
 using MeterTrackerApi;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 namespace MeterTrackerApi.Controllers;
 [ApiController]
@@ -19,6 +20,13 @@ public class ReadingsController : ControllerBase
     {
         return Ok(await _readingService.GetAll());
     }
+    [HttpGet("latest")]
+    [Authorize(Roles = "Admin")]
+    public async Task<ActionResult<List<Reading>>> GetLatest()
+    {
+        var readings = await _readingService.GetLatestByPremises();
+        return Ok(readings);
+    }
     [HttpGet("{id}")]
     public async Task<ActionResult<Reading>> Get(int id)
     {
@@ -26,6 +34,7 @@ public class ReadingsController : ControllerBase
         if(reading==null) return NotFound();
         return Ok(reading);
     }
+    
     [HttpPost]
     public async Task<ActionResult<Reading>> Create(CreateReadingDto dto)
     {
