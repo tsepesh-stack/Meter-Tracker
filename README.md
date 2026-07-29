@@ -34,16 +34,16 @@
 
 Frontend/
 ├── html/
-│ ├── index.html # Логин
-│ ├── readings.html # Интерфейс арендатора (телефон)
-│ └── admin.html # Таблица владельца (компьютер)
+│   ├── index.html      # Логин
+│   ├── readings.html   # Интерфейс арендатора (телефон)
+│   └── admin.html      # Таблица владельца (компьютер)
 ├── css/
 └── js/
 
 MeterTrackerApi/
-├── Controllers/ # Auth, Meters, Premises, Readings
-├── Services/ # MeterService, PremiseService, ReadingService, CloudinaryService
-├── Models/ # User, Premise, Meter, Reading
+├── Controllers/        # Auth, Meters, Premises, Readings
+├── Services/           # MeterService, PremiseService, ReadingService, CloudinaryService
+├── Models/             # User, Premise, Meter, Reading
 ├── DTOs/
 └── Migrations/
 
