@@ -133,3 +133,6 @@ C:\Code\Meter-Tracker\MeterTrackerApi\obj\Debug\net10.0\MeterTrackerApi.genrunti
 C:\Code\Meter-Tracker\MeterTrackerApi\obj\Debug\net10.0\ref\MeterTrackerApi.dll
 C:\Code\Meter-Tracker\MeterTrackerApi\bin\Debug\net10.0\CloudinaryDotNet.dll
 C:\Code\Meter-Tracker\MeterTrackerApi\bin\Debug\net10.0\BCrypt-Net-Next.dll
+C:\Code\Meter-Tracker\MeterTrackerApi\bin\Debug\net10.0\RESPite.dll
+C:\Code\Meter-Tracker\MeterTrackerApi\bin\Debug\net10.0\StackExchange.Redis.dll
+C:\Code\Meter-Tracker\MeterTrackerApi\bin\Debug\net10.0\System.IO.Hashing.dll

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,6 +49,7 @@ builder.Services.AddCors(options =>
     });
 });
 
+builder.Services.AddSingleton<IConnectionMultiplexer>(sp=> ConnectionMultiplexer.Connect("localhost:6379"));
 builder.Services.AddScoped<CloudinaryService>();
 builder.Services.AddScoped<MeterService>();
 builder.Services.AddScoped<PremiseService>();

@@ -14,6 +14,7 @@
           "Microsoft.EntityFrameworkCore": "10.0.9",
           "Microsoft.EntityFrameworkCore.Design": "10.0.9",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.3",
+          "StackExchange.Redis": "3.0.25",
           "Swashbuckle.AspNetCore": "10.2.3"
         },
         "runtime": {
@@ -515,6 +516,26 @@
           }
         }
       },
+      "RESPite/3.0.25": {
+        "runtime": {
+          "lib/net10.0/RESPite.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.25.33140"
+          }
+        }
+      },
+      "StackExchange.Redis/3.0.25": {
+        "dependencies": {
+          "RESPite": "3.0.25",
+          "System.IO.Hashing": "10.0.5"
+        },
+        "runtime": {
+          "lib/net10.0/StackExchange.Redis.dll": {
+            "assemblyVersion": "3.0.0.0",
+            "fileVersion": "3.0.25.33140"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/10.2.3": {
         "dependencies": {
           "Swashbuckle.AspNetCore.Swagger": "10.2.3",
@@ -629,6 +650,14 @@
           "lib/net9.0/System.IdentityModel.Tokens.Jwt.dll": {
             "assemblyVersion": "8.0.1.0",
             "fileVersion": "8.0.1.50722"
+          }
+        }
+      },
+      "System.IO.Hashing/10.0.5": {
+        "runtime": {
+          "lib/net10.0/System.IO.Hashing.dll": {
+            "assemblyVersion": "10.0.0.5",
+            "fileVersion": "10.0.526.15411"
           }
         }
       }
@@ -829,6 +858,20 @@
       "path": "npgsql.entityframeworkcore.postgresql/10.0.3",
       "hashPath": "npgsql.entityframeworkcore.postgresql.10.0.3.nupkg.sha512"
     },
+    "RESPite/3.0.25": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-v4vA1MttS78DQINFIY5BLOtWdA9OXoSSZk4VVdSzM7B2GezKsFHqTQpTHCZXuUuQ6+gPmvh8DkT60wEEtCojSg==",
+      "path": "respite/3.0.25",
+      "hashPath": "respite.3.0.25.nupkg.sha512"
+    },
+    "StackExchange.Redis/3.0.25": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ak+9jk7f5oE25gBaCT7Epr8jYD3EyTEuMr5oxlY8EZE7o01xcaGLWTg+xeE6PaRV1ko9/fMdlvSEjdrdgpBb0g==",
+      "path": "stackexchange.redis/3.0.25",
+      "hashPath": "stackexchange.redis.3.0.25.nupkg.sha512"
+    },
     "Swashbuckle.AspNetCore/10.2.3": {
       "type": "package",
       "serviceable": true,
@@ -912,6 +955,13 @@
       "sha512": "sha512-GJw3bYkWpOgvN3tJo5X4lYUeIFA2HD293FPUhKmp7qxS+g5ywAb34Dnd3cDAFLkcMohy5XTpoaZ4uAHuw0uSPQ==",
       "path": "system.identitymodel.tokens.jwt/8.0.1",
       "hashPath": "system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512"
+    },
+    "System.IO.Hashing/10.0.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8IBJWcCT9+e4Bmevm4T7+fQEiAh133KGiz4oiVTgJckd3Q76OFdR1falgn9lpz7+C4HJvogCDJeAa2QmvbeVtg==",
+      "path": "system.io.hashing/10.0.5",
+      "hashPath": "system.io.hashing.10.0.5.nupkg.sha512"
     }
   }
 }
