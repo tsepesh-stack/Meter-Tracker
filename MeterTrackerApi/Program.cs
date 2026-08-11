@@ -49,8 +49,8 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddSingleton<IConnectionMultiplexer>(sp=> ConnectionMultiplexer.Connect("localhost:6379"));
-builder.Services.AddScoped<CloudinaryService>();
+builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
+    ConnectionMultiplexer.Connect(builder.Configuration.GetConnectionString("Redis")));builder.Services.AddScoped<CloudinaryService>();
 builder.Services.AddScoped<MeterService>();
 builder.Services.AddScoped<PremiseService>();
 builder.Services.AddScoped<ReadingService>();
