@@ -6,11 +6,11 @@
 
 | Вход | Помещения | Подача показания |
 |---|---|---|
-| ![Вход](MeterTrackerApi/Screenshots/Login.jpg) | ![Мои помещения](MeterTrackerApi/Screenshots/Menu.jpg) | ![Показание](MeterTrackerApi/Screenshots/PM.jpg) |
+| ![Вход](MeterTrackerApi/Screenshots/login.jpg) | ![Мои помещения](MeterTrackerApi/Screenshots/menu.jpg) | ![Показание](MeterTrackerApi/Screenshots/pm.jpg) |
 
 **Admin-панель (компьютер)**
 
-![Таблица владельца](MeterTrackerApi/Screenshots/Success.png)
+![Таблица владельца](MeterTrackerApi/Screenshots/reading.png)
 
 ## Возможности
 
