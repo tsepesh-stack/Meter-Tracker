@@ -8,9 +8,9 @@
 |---|---|---|
 | ![Вход](MeterTrackerApi/Screenshots/Login.jpg) | ![Мои помещения](MeterTrackerApi/Screenshots/Menu.jpg) | ![Показание](MeterTrackerApi/Screenshots/PM.jpg) |
 
-| Валидация | Сохранено | Admin-панель |
-|---|---|---|
-| ![Ошибка валидации](MeterTrackerApi/Screenshots/Wrong.jpg) | ![Показание сохранено](MeterTrackerApi/Screenshots/Success.jpg) | ![Таблица владельца](MeterTrackerApi/Screenshots/Reaging.jpg) |
+**Admin-панель (компьютер)**
+
+![Таблица владельца](MeterTrackerApi/Screenshots/Reaging.jpg)
 
 ## Возможности
 
