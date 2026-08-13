@@ -4,6 +4,8 @@
 
 ## Скриншоты
 
+**User-панель (мобильная версия)**
+
 ![Путь пользователя](MeterTrackerApi/Screenshots/meter-tracker-flow.jpg)
 
 **Admin-панель (компьютер)**
