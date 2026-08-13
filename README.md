@@ -2,6 +2,16 @@
 
 Веб-приложение для учёта показаний счётчиков коммунальных услуг. Разработано для управления несколькими арендуемыми помещениями — позволяет арендаторам подавать показания с телефона, а владельцу видеть сводную таблицу на компьютере.
 
+## Скриншоты
+
+| Вход | Помещения | Подача показания |
+|---|---|---|
+| ![Вход](Screenshots/Login.jpg) | ![Мои помещения](Screenshots/Menu.jpg) | ![Показание](Screenshots/PM.jpg) |
+
+| Валидация | Сохранено | Admin-панель |
+|---|---|---|
+| ![Ошибка валидации](Screenshots/Wrong.jpg) | ![Показание сохранено](Screenshots/Success.jpg) | ![Таблица владельца](Screenshots/Reaging.jpg) |
+
 ## Возможности
 
 **Для арендаторов (телефон)**
@@ -21,32 +31,36 @@
 **Бэкенд**
 - ASP.NET Core Web API (.NET 10)
 - Entity Framework Core + PostgreSQL
+- Redis — кэширование часто запрашиваемых данных
 - JWT-аутентификация с ролями (Admin / User)
 - BCrypt для хеширования паролей
 - Cloudinary для хранения фотографий
 
 **Фронтенд**
 - Vanilla HTML / CSS / JavaScript (без фреймворков)
-- Адаптивный дизайн: мобильный для арендаторов, десктопный для владельца
-- SPA-архитектура (один HTML-файл, переключение экранов через JS)
+- Адаптивный дизайн: мобильный интерфейс для арендаторов, десктопный для владельца
+- SPA-подобная навигация между экранами
+
+**Инфраструктура**
+- Docker (multi-stage build), три независимых контейнера (API, PostgreSQL, Redis) в общей Docker-сети
+- Nginx — отдача статики фронтенда отдельным контейнером
+- Развёрнуто на VPS (Ubuntu 24.04), доступно по публичному IP
 
 ## Архитектура
-
 Frontend/
 ├── html/
-│   ├── index.html      # Логин
-│   ├── readings.html   # Интерфейс арендатора (телефон)
-│   └── admin.html      # Таблица владельца (компьютер)
+│ ├── index.html # Логин
+│ ├── readings.html # Интерфейс арендатора (телефон)
+│ └── admin.html # Таблица владельца (компьютер)
 ├── css/
 └── js/
 
 MeterTrackerApi/
-├── Controllers/        # Auth, Meters, Premises, Readings
-├── Services/           # MeterService, PremiseService, ReadingService, CloudinaryService
-├── Models/             # User, Premise, Meter, Reading
+├── Controllers/ # Auth, Meters, Premises, Readings
+├── Services/ # MeterService, PremiseService, ReadingService, CloudinaryService
+├── Models/ # User, Premise, Meter, Reading
 ├── DTOs/
 └── Migrations/
-
 ## Модель данных
 
 - **User** — пользователь системы (Admin / User)
@@ -54,13 +68,20 @@ MeterTrackerApi/
 - **Meter** — счётчик в помещении (тип + тариф)
 - **Reading** — показание счётчика (значение + фото + дата + кто сдал)
 
-## Запуск
+## Запуск локально
+
+```bash
 git clone https://github.com/tsepesh-stack/Meter-Tracker
 cd MeterTrackerApi
 dotnet ef database update
 dotnet run
+```
 
 Фронтенд открывается через Live Server или любой статический сервер.
+
+## Деплой
+
+Проект развёрнут в контейнерах на VPS: API, PostgreSQL и Redis в изолированной Docker-сети, статика фронтенда отдаётся через отдельный контейнер Nginx. Секреты (JWT, строки подключения, ключи Cloudinary) передаются через переменные окружения, не хранятся в репозитории.
 
 ## Заметки
 
