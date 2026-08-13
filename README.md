@@ -4,7 +4,7 @@
 
 ## Скриншоты
 
-![Путь пользователя](MeterTrackerApi/Screenshots/flow.jpg)
+![Путь пользователя](MeterTrackerApi/Screenshots/meter-tracker-flow.jpg)
 
 **Admin-панель (компьютер)**
 
