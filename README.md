@@ -10,7 +10,7 @@
 
 **Admin-панель (компьютер)**
 
-![Таблица владельца](MeterTrackerApi/Screenshots/reading.png)
+![Таблица владельца](MeterTrackerApi/Screenshots/reading.jpg)
 
 ## Возможности
 
