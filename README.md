@@ -47,20 +47,11 @@
 - Развёрнуто на VPS (Ubuntu 24.04), доступно по публичному IP
 
 ## Архитектура
-Frontend/
-├── html/
-│ ├── index.html # Логин
-│ ├── readings.html # Интерфейс арендатора (телефон)
-│ └── admin.html # Таблица владельца (компьютер)
-├── css/
-└── js/
 
-MeterTrackerApi/
-├── Controllers/ # Auth, Meters, Premises, Readings
-├── Services/ # MeterService, PremiseService, ReadingService, CloudinaryService
-├── Models/ # User, Premise, Meter, Reading
-├── DTOs/
-└── Migrations/
+**Frontend/** — `html/` (index, readings, admin) · `css/` · `js/`
+
+**MeterTrackerApi/** — `Controllers/` (Auth, Meters, Premises, Readings) · `Services/` (MeterService, PremiseService, ReadingService, CloudinaryService) · `Models/` (User, Premise, Meter, Reading) · `DTOs/` · `Migrations/`
+
 ## Модель данных
 
 - **User** — пользователь системы (Admin / User)
