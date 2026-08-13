@@ -4,6 +4,8 @@
 
 ## Скриншоты
 
+| Вход | Помещения | Подача показания |
+|---|---|---|
 | ![Вход](MeterTrackerApi/Screenshots/Login.jpg) | ![Мои помещения](MeterTrackerApi/Screenshots/Menu.jpg) | ![Показание](MeterTrackerApi/Screenshots/PM.jpg) |
 
 **Admin-панель (компьютер)**
