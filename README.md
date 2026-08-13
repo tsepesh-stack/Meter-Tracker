@@ -6,11 +6,11 @@
 
 | Вход | Помещения | Подача показания |
 |---|---|---|
-| ![Вход](Screenshots/Login.jpg) | ![Мои помещения](Screenshots/Menu.jpg) | ![Показание](Screenshots/PM.jpg) |
+| ![Вход](MeterTrackerApi/Screenshots/Login.jpg) | ![Мои помещения](MeterTrackerApi/Screenshots/Menu.jpg) | ![Показание](MeterTrackerApi/Screenshots/PM.jpg) |
 
 | Валидация | Сохранено | Admin-панель |
 |---|---|---|
-| ![Ошибка валидации](Screenshots/Wrong.jpg) | ![Показание сохранено](Screenshots/Success.jpg) | ![Таблица владельца](Screenshots/Reaging.jpg) |
+| ![Ошибка валидации](MeterTrackerApi/Screenshots/Wrong.jpg) | ![Показание сохранено](MeterTrackerApi/Screenshots/Success.jpg) | ![Таблица владельца](MeterTrackerApi/Screenshots/Reaging.jpg) |
 
 ## Возможности
 
